@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://c7y7rmr6eaanr"]
+
+[ext_resource type="Script" path="res://Assets/UI/hand.gd" id="2_hbm72"]
+
+[sub_resource type="CircleShape2D" id="CircleShape2D_to81q"]
+radius = 114.004
+
+[node name="Screen" type="Node2D"]
+
+[node name="CardDropSlot" type="Area2D" parent="."]
+position = Vector2(600, 500)
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="CardDropSlot"]
+shape = SubResource("CircleShape2D_to81q")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." groups=["ui_layer"]]
+
+[node name="Hand" type="HBoxContainer" parent="CanvasLayer"]
+anchors_preset = 10
+anchor_right = 1.0
+offset_bottom = 150.0
+grow_horizontal = 2
+alignment = 1
+script = ExtResource("2_hbm72")

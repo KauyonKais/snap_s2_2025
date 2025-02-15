@@ -1,0 +1,9 @@
+[gd_resource type="Resource" script_class="Card" load_steps=2 format=3 uid="uid://cghknwi42i5oj"]
+
+[ext_resource type="Script" path="res://ResourceScripts/card.gd" id="1_wg8uy"]
+
+[resource]
+script = ExtResource("1_wg8uy")
+id = "8_pent"
+type = 4
+value = 8

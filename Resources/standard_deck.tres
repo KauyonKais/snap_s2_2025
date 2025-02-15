@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="CardPile" load_steps=13 format=3 uid="uid://ghmsyaga5k8d"]
+
+[ext_resource type="Script" path="res://ResourceScripts/card.gd" id="1_wbmey"]
+[ext_resource type="Resource" uid="uid://chimxp8mmfh6e" path="res://Resources/Cards/1_pent.tres" id="2_ch3u5"]
+[ext_resource type="Script" path="res://ResourceScripts/card_pile.gd" id="2_hflmv"]
+[ext_resource type="Resource" uid="uid://bjx8558bt3vv" path="res://Resources/Cards/2_pent.tres" id="3_nbyb5"]
+[ext_resource type="Resource" uid="uid://bjq1wupq3qq6j" path="res://Resources/Cards/3_pent.tres" id="4_3jqfs"]
+[ext_resource type="Resource" uid="uid://s086ewuk7qkq" path="res://Resources/Cards/4_pent.tres" id="5_gdda6"]
+[ext_resource type="Resource" uid="uid://dcjdo66ohqfna" path="res://Resources/Cards/5_pent.tres" id="6_tuxxh"]
+[ext_resource type="Resource" uid="uid://dhm2b57nsylx6" path="res://Resources/Cards/6_pent.tres" id="7_6x8qc"]
+[ext_resource type="Resource" uid="uid://cj1hydojm42x2" path="res://Resources/Cards/7_pent.tres" id="8_e5os6"]
+[ext_resource type="Resource" uid="uid://cghknwi42i5oj" path="res://Resources/Cards/8_pent.tres" id="9_8kqp1"]
+[ext_resource type="Resource" uid="uid://ocrd2lg1514c" path="res://Resources/Cards/9_pent.tres" id="10_wqdw8"]
+[ext_resource type="Resource" uid="uid://ikrin52bmk1i" path="res://Resources/Cards/10_pent.tres" id="11_lfq0v"]
+
+[resource]
+script = ExtResource("2_hflmv")
+cards = Array[ExtResource("1_wbmey")]([ExtResource("2_ch3u5"), ExtResource("3_nbyb5"), ExtResource("4_3jqfs"), ExtResource("5_gdda6"), ExtResource("6_tuxxh"), ExtResource("7_6x8qc"), ExtResource("8_e5os6"), ExtResource("9_8kqp1"), ExtResource("10_wqdw8"), ExtResource("11_lfq0v")])
