@@ -11,6 +11,7 @@ signal reparent_requested(which_card_ui: CardUI)
 
 var original_index := 0
 var parent: Control
+var new_parent: Control
 var tween: Tween
 var playable := true : set = _set_playable
 var disabled := false
@@ -54,3 +55,14 @@ func _on_mouse_entered() -> void:
 
 func _on_mouse_exited() -> void:
 	card_state_machine.on_mouse_exited()
+
+
+func _on_drop_point_detector_area_entered(area: Area2D) -> void:
+	match area.name:
+		"HandDropSlot": new_parent = $/root/Screen/CanvasLayer/Hand
+		"PlayDropSlot": new_parent = $/root/Screen/CanvasLayer/Play
+		"SaveDropSlot": new_parent = $/root/Screen/CanvasLayer/Save
+
+
+func _on_drop_point_detector_area_exited(area: Area2D) -> void:
+	new_parent = null
