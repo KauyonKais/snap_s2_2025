@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://Screens/challenge_screen.gd" id="1_27037"]
 [ext_resource type="Script" path="res://Assets/UI/hand.gd" id="2_hbm72"]
-[ext_resource type="Resource" uid="uid://ghmsyaga5k8d" path="res://Resources/standard_deck.tres" id="2_u1coq"]
+[ext_resource type="Script" path="res://Assets/UI/challenge_handler.gd" id="3_p16bf"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ko0r0"]
 size = Vector2(600, 200)
@@ -15,8 +15,9 @@ size = Vector2(250, 200)
 
 [node name="Screen" type="Node2D"]
 script = ExtResource("1_27037")
-start_deck = ExtResource("2_u1coq")
-start_slots = 5
+
+[node name="ChallengeHandler" type="Node" parent="."]
+script = ExtResource("3_p16bf")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." groups=["ui_layer"]]
 
