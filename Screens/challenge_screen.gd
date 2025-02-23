@@ -1,14 +1,18 @@
 extends Node2D
 
+@onready var challenge_handler:ChallengeHandler = $ChallengeHandler
+
 #to be moved to player
 @onready var hand = $CanvasLayer/Hand
 @onready var save = $CanvasLayer/Save
 @onready var play = $CanvasLayer/Play
 @export var start_deck:CardPile
 @export var start_slots:int
+@export var challenges = [Challenge]
 var deck:CardPile
 var discard:CardPile
 var slots:int
+var gold:int
 const HAND_DRAW_INTERVAL := 0.25
 const HAND_DISCARD_INTERVAL := 0.25
 
@@ -29,11 +33,18 @@ func end_day() -> void:
 	discard_hand()
 
 func start_turn()->void:
-	#TODO ??
+	challenge_handler.start_challenge(challenges.pick_random())
 	pass
 
 func end_turn()->void:
 	#TODO handle challenge result
+	var play_value := 0
+	for card:CardUI in play.get_children():
+		play_value += card.card.value
+	
+	var challenge_outcome := challenge_handler.get_challenge_result(play_value)
+	apply_outcome(challenge_outcome)
+	
 	#hand.disable_hand()
 	discard_play()
 #to be moved to player
@@ -51,6 +62,13 @@ func draw_card() -> void:
 	reshuffle_deck_from_discard()
 	hand.add_card(deck.draw_card())
 	reshuffle_deck_from_discard()
+
+func apply_outcome(outcome:ChallengeOutcome)->void:
+	if outcome.is_positive:
+		gold += outcome.gold
+	else:
+		slots -= outcome.burn_slots
+		#TODO handle card burning
 
 func discard_play() -> void:
 	if play.get_child_count() == 0:

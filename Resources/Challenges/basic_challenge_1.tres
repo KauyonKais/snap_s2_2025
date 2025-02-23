@@ -1,0 +1,28 @@
+[gd_resource type="Resource" script_class="Challenge" load_steps=5 format=3 uid="uid://dfkwxoorsysh2"]
+
+[ext_resource type="Script" path="res://ResourceScripts/challenge_outcome.gd" id="1_30iom"]
+[ext_resource type="Script" path="res://ResourceScripts/challenge.gd" id="2_xsqua"]
+
+[sub_resource type="Resource" id="Resource_hau0t"]
+script = ExtResource("1_30iom")
+title = "Bad 1"
+is_positive = false
+gold = 0
+burn_cards = 0
+burn_slots = 0
+
+[sub_resource type="Resource" id="Resource_ll7wf"]
+script = ExtResource("1_30iom")
+title = "Good 1"
+is_positive = true
+gold = 2
+burn_cards = 0
+burn_slots = 0
+
+[resource]
+script = ExtResource("2_xsqua")
+title = "Basic Challenge 1"
+target = 10
+danger = 0
+good_outcome = SubResource("Resource_ll7wf")
+bad_outcome = SubResource("Resource_hau0t")

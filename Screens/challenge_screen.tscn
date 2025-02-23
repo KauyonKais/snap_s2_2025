@@ -1,8 +1,11 @@
-[gd_scene load_steps=7 format=3 uid="uid://c7y7rmr6eaanr"]
+[gd_scene load_steps=10 format=3 uid="uid://c7y7rmr6eaanr"]
 
 [ext_resource type="Script" path="res://Screens/challenge_screen.gd" id="1_27037"]
 [ext_resource type="Script" path="res://Assets/UI/hand.gd" id="2_hbm72"]
+[ext_resource type="Resource" uid="uid://ghmsyaga5k8d" path="res://Resources/standard_deck.tres" id="2_u1coq"]
 [ext_resource type="Script" path="res://Assets/UI/challenge_handler.gd" id="3_p16bf"]
+[ext_resource type="Resource" uid="uid://dfkwxoorsysh2" path="res://Resources/Challenges/basic_challenge_1.tres" id="3_ypand"]
+[ext_resource type="Resource" uid="uid://cxkc1t178fbqb" path="res://Resources/Challenges/basic_challenge_2.tres" id="4_35q7r"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ko0r0"]
 size = Vector2(600, 200)
@@ -15,6 +18,9 @@ size = Vector2(250, 200)
 
 [node name="Screen" type="Node2D"]
 script = ExtResource("1_27037")
+start_deck = ExtResource("2_u1coq")
+start_slots = 5
+challenges = [ExtResource("3_ypand"), ExtResource("4_35q7r")]
 
 [node name="ChallengeHandler" type="Node" parent="."]
 script = ExtResource("3_p16bf")
@@ -58,6 +64,24 @@ offset_right = 300.0
 grow_horizontal = 2
 grow_vertical = 0
 alignment = 1
+
+[node name="Challenge" type="Panel" parent="CanvasLayer"]
+offset_left = 496.0
+offset_top = 205.0
+offset_right = 679.0
+offset_bottom = 429.0
+
+[node name="Title" type="Label" parent="CanvasLayer/Challenge"]
+layout_mode = 0
+offset_right = 180.0
+offset_bottom = 51.0
+
+[node name="Target" type="Label" parent="CanvasLayer/Challenge"]
+layout_mode = 0
+offset_left = 2.0
+offset_top = 81.0
+offset_right = 182.0
+offset_bottom = 132.0
 
 [node name="HandDropSlot" type="Area2D" parent="."]
 position = Vector2(576, 100)
