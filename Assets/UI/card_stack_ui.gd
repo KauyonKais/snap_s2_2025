@@ -1,4 +1,4 @@
-class_name Hand
+class_name CardStackUI
 extends HBoxContainer
 
 
@@ -11,7 +11,6 @@ func add_card(card: Card) -> void:
 	add_child(new_card_ui)
 	new_card_ui.reparent_requested.connect(_on_card_ui_reparent_requested)
 	new_card_ui.card = card
-	new_card_ui.parent = self
 
 
 func discard_card(card: CardUI) -> void:
@@ -25,11 +24,10 @@ func disable_hand() -> void:
 
 func _on_card_ui_reparent_requested(child: CardUI) -> void:
 	child.disabled = true
-	var parent:Control
-	parent = self
+	var parent:= self as Container
 	if child.new_parent: parent = child.new_parent
 	print(child.new_parent)
 	child.reparent(parent)
-	var new_index := clampi(child.original_index, 0, get_child_count())
-	move_child.call_deferred(child, new_index)
+	var new_index := clampi(child.original_index, 0, parent.get_child_count())
+	parent.move_child.call_deferred(child, new_index)
 	child.set_deferred("disabled", false)

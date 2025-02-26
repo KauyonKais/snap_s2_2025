@@ -2,30 +2,23 @@ extends Node2D
 
 @onready var challenge_handler:ChallengeHandler = $ChallengeHandler
 
-#to be moved to player
+@onready var player = $Player
+
 @onready var hand = $CanvasLayer/Hand
 @onready var save = $CanvasLayer/Save
 @onready var play = $CanvasLayer/Play
-@export var start_deck:CardPile
-@export var start_slots:int
 @export var challenges = [Challenge]
-var deck:CardPile
-var discard:CardPile
-var slots:int
-var gold:int
+
 const HAND_DRAW_INTERVAL := 0.25
 const HAND_DISCARD_INTERVAL := 0.25
 
 #to be moved
 func _ready() -> void:
-	slots = start_slots
-	deck = start_deck.duplicate(true)
-	discard = CardPile.new()
 	start_day()
 
 func start_day()->void:
-	deck.shuffle()
-	draw_cards(slots)
+	player.deck.shuffle()
+	draw_cards(player.slots)
 	start_turn()
 
 func end_day() -> void:
@@ -37,13 +30,12 @@ func start_turn()->void:
 	pass
 
 func end_turn()->void:
-	#TODO handle challenge result
 	var play_value := 0
 	for card:CardUI in play.get_children():
 		play_value += card.card.value
 	
 	var challenge_outcome := challenge_handler.get_challenge_result(play_value)
-	apply_outcome(challenge_outcome)
+	player.apply_outcome(challenge_outcome)
 	
 	#hand.disable_hand()
 	discard_play()
@@ -60,15 +52,8 @@ func draw_cards(amount: int) -> void:
 #to be moved to player
 func draw_card() -> void:
 	reshuffle_deck_from_discard()
-	hand.add_card(deck.draw_card())
+	hand.add_card(player.deck.draw_card())
 	reshuffle_deck_from_discard()
-
-func apply_outcome(outcome:ChallengeOutcome)->void:
-	if outcome.is_positive:
-		gold += outcome.gold
-	else:
-		slots -= outcome.burn_slots
-		#TODO handle card burning
 
 func discard_play() -> void:
 	if play.get_child_count() == 0:
@@ -77,7 +62,7 @@ func discard_play() -> void:
 	
 	var tween := create_tween()
 	for card_ui: CardUI in play.get_children():
-		tween.tween_callback(discard.add_card.bind(card_ui.card))
+		tween.tween_callback(player.discard.add_card.bind(card_ui.card))
 		tween.tween_callback(card_ui.queue_free)
 		tween.tween_interval(HAND_DISCARD_INTERVAL)
 	
@@ -94,7 +79,7 @@ func discard_hand() -> void:
 	
 	var tween := create_tween()
 	for card_ui: CardUI in hand.get_children():
-		tween.tween_callback(discard.add_card.bind(card_ui.card))
+		tween.tween_callback(player.discard.add_card.bind(card_ui.card))
 		tween.tween_callback(hand.discard_card.bind(card_ui))
 		tween.tween_interval(HAND_DISCARD_INTERVAL)
 		
@@ -105,13 +90,13 @@ func discard_hand() -> void:
 	)
 	
 func reshuffle_deck_from_discard() -> void:
-	if not deck.empty():
+	if not player.deck.empty():
 		return
 
-	while not discard.empty():
-		deck.add_card(discard.draw_card())
+	while not player.discard.empty():
+		player.deck.add_card(player.discard.draw_card())
 
-	deck.shuffle()
+	player.deck.shuffle()
 
 #TODO handle better!
 func _on_end_turn_pressed() -> void:
