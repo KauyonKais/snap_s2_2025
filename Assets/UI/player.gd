@@ -8,6 +8,10 @@ var discard:CardPile
 var slots:int
 var gold:int
 
+func _ready() -> void:
+	deck = start_deck.duplicate()
+	discard = CardPile.new()
+	slots = start_slots
 
 func apply_outcome(outcome:ChallengeOutcome)->void:
 	gold += outcome.gold

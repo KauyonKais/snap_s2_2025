@@ -1,10 +1,11 @@
-[gd_scene load_steps=10 format=3 uid="uid://c7y7rmr6eaanr"]
+[gd_scene load_steps=11 format=3 uid="uid://c7y7rmr6eaanr"]
 
 [ext_resource type="Script" path="res://Screens/challenge_screen.gd" id="1_27037"]
 [ext_resource type="Script" path="res://Assets/UI/card_stack_ui.gd" id="2_hbm72"]
 [ext_resource type="Script" path="res://Assets/UI/challenge_handler.gd" id="3_p16bf"]
 [ext_resource type="Resource" uid="uid://dfkwxoorsysh2" path="res://Resources/Challenges/basic_challenge_1.tres" id="3_ypand"]
 [ext_resource type="Resource" uid="uid://cxkc1t178fbqb" path="res://Resources/Challenges/basic_challenge_2.tres" id="4_35q7r"]
+[ext_resource type="Resource" uid="uid://ghmsyaga5k8d" path="res://Resources/standard_deck.tres" id="6_1rh2q"]
 [ext_resource type="Script" path="res://Assets/UI/player.gd" id="6_f7mgp"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ko0r0"]
@@ -25,6 +26,8 @@ script = ExtResource("3_p16bf")
 
 [node name="Player" type="Node" parent="."]
 script = ExtResource("6_f7mgp")
+start_deck = ExtResource("6_1rh2q")
+start_slots = 5
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." groups=["ui_layer"]]
 
@@ -52,6 +55,7 @@ offset_bottom = -24.0
 grow_horizontal = 0
 grow_vertical = 2
 alignment = 1
+script = ExtResource("2_hbm72")
 
 [node name="Play" type="HBoxContainer" parent="CanvasLayer"]
 anchors_preset = 7
