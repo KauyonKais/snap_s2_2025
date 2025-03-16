@@ -14,11 +14,17 @@ const HAND_DISCARD_INTERVAL := 0.25
 
 #to be moved
 func _ready() -> void:
+	connect_event_hub()
 	start_day()
+
+func connect_event_hub() -> void:
+	EventHub.day_ended.connect(_on_day_ended)
+	EventHub.day_started.connect(_on_day_started)
 
 func start_day()->void:
 	player.deck.shuffle()
 	draw_cards(player.slots)
+	EventHub.day_started.emit()
 	start_turn()
 
 func end_day() -> void:
@@ -74,7 +80,7 @@ func discard_play() -> void:
 
 func discard_hand() -> void:
 	if hand.get_child_count() == 0:
-		day_ended()
+		EventHub.day_ended.emit()
 		return
 	
 	var tween := create_tween()
@@ -85,7 +91,7 @@ func discard_hand() -> void:
 		
 	tween.finished.connect(
 		func():
-			day_ended()
+			EventHub.day_ended.emit()
 			pass #Events.player_hand_discarded.emit()
 	)
 	
@@ -102,11 +108,15 @@ func reshuffle_deck_from_discard() -> void:
 func _on_end_turn_pressed() -> void:
 	end_turn()
 
+func _on_end_day_pressed() -> void:
+	end_day()
+
+####### CYCLE EVENTS
+func _on_day_started()->void:
+	pass
+
 func turn_ended()->void:
 	start_turn()
 
-func day_ended() -> void:
+func _on_day_ended() -> void:
 	start_day()
-
-func _on_end_day_pressed() -> void:
-	end_day()
