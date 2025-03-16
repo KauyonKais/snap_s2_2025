@@ -1,7 +1,10 @@
-[gd_scene load_steps=3 format=3 uid="uid://dy1sfxhyndn4i"]
+[gd_scene load_steps=6 format=3 uid="uid://dy1sfxhyndn4i"]
 
 [ext_resource type="Script" path="res://Assets/GameFlow/game_screen.gd" id="1_6d8g2"]
+[ext_resource type="Script" path="res://Assets/player.gd" id="2_mqhg4"]
 [ext_resource type="Script" path="res://Assets/GameFlow/day_action.gd" id="2_vbjbn"]
+[ext_resource type="Script" path="res://Assets/GameFlow/day_start_behaviour.gd" id="3_ec6ip"]
+[ext_resource type="Resource" uid="uid://ghmsyaga5k8d" path="res://Resources/standard_deck.tres" id="3_hwog6"]
 
 [node name="GameScreen" type="Control"]
 layout_mode = 3
@@ -13,6 +16,12 @@ grow_vertical = 2
 size_flags_horizontal = 4
 size_flags_vertical = 4
 script = ExtResource("1_6d8g2")
+
+[node name="Player" type="Node" parent="."]
+unique_name_in_owner = true
+script = ExtResource("2_mqhg4")
+start_deck = ExtResource("3_hwog6")
+start_slots = 5
 
 [node name="DayStart" type="Control" parent="."]
 visible = false
@@ -65,6 +74,9 @@ offset_right = 90.5
 grow_horizontal = 2
 grow_vertical = 0
 text = "Continue to next state"
+
+[node name="DayStartBehaviour" type="Node" parent="DayStart"]
+script = ExtResource("3_ec6ip")
 
 [node name="DayPrep" type="Control" parent="."]
 visible = false
@@ -350,7 +362,7 @@ text = "Continue to next state"
 [connection signal="pressed" from="DayStart/DayStarted" to="." method="_on_day_started_pressed"]
 [connection signal="pressed" from="DayPrep/DayPrepped" to="." method="_on_day_prepped_pressed"]
 [connection signal="pressed" from="DayAction/ChallengeChoice/ChallengeChosen" to="DayAction" method="_on_challenge_chosen_pressed"]
-[connection signal="pressed" from="DayAction/ChallengeChoice/EndDayChosen" to="." method="_on_end_day_chosen_pressed"]
+[connection signal="pressed" from="DayAction/ChallengeChoice/EndDayChosen" to="DayAction" method="_on_end_day_chosen_pressed"]
 [connection signal="pressed" from="DayAction/ChallengeAction/ChallengeActionEnded" to="DayAction" method="_on_challenge_action_ended_pressed"]
 [connection signal="pressed" from="DayAction/ChallengeResult/ChallengeFinished" to="DayAction" method="_on_challenge_finished_pressed"]
 [connection signal="pressed" from="DayEnd/DayEnded" to="." method="_on_day_ended_pressed"]

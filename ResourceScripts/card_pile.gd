@@ -20,6 +20,9 @@ func add_card(card: Card) -> void:
 	cards.append(card)
 	card_pile_size_changed.emit(cards.size())
 
+func add_cards(cards: Array[Card]) -> void:
+	cards.append_array(cards)
+	card_pile_size_changed.emit(cards.size())
 
 func shuffle() -> void:
 	cards.shuffle()
