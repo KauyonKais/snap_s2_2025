@@ -15,6 +15,10 @@ run/main_scene="res://Screens/challenge_screen.tscn"
 config/features=PackedStringArray("4.3", "GL Compatibility")
 config/icon="res://icon.svg"
 
+[autoload]
+
+EventHub="*res://Assets/event_hub.gd"
+
 [dotnet]
 
 project/assembly_name="snap jam Q1 25"

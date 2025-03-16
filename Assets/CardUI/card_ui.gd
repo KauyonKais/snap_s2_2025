@@ -10,8 +10,8 @@ signal reparent_requested(which_card_ui: CardUI)
 @onready var card_state_machine: CardStateMachine = $CardStateMachine
 
 var original_index := 0
-var parent: Control
-var new_parent: Control
+var parent: CardStackUI
+var new_parent: CardStackUI
 var tween: Tween
 var playable := true : set = _set_playable
 var disabled := false
@@ -20,12 +20,18 @@ var disabled := false
 func _ready() -> void:
 	#connect events with outer world
 	card_state_machine.init(self)
+	parent = get_parent()
 	
 func _input(event: InputEvent) -> void:
 	card_state_machine.on_input(event)
 
 #FUNCTIONS
 
+func change_parent(to_parent:Node) -> void:
+	#if to_parent == parent: return
+	parent = to_parent
+	new_parent = null
+	reparent(parent)
 
 func animate_to_position(new_position: Vector2, duration: float) -> void:
 	tween = create_tween().set_trans(Tween.TRANS_CIRC).set_ease(Tween.EASE_OUT)
@@ -64,5 +70,5 @@ func _on_drop_point_detector_area_entered(area: Area2D) -> void:
 		"SaveDropSlot": new_parent = $/root/Screen/CanvasLayer/Save
 
 
-func _on_drop_point_detector_area_exited(area: Area2D) -> void:
+func _on_drop_point_detector_area_exited(_area: Area2D) -> void:
 	new_parent = null

@@ -1,0 +1,356 @@
+[gd_scene load_steps=3 format=3 uid="uid://dy1sfxhyndn4i"]
+
+[ext_resource type="Script" path="res://Assets/GameFlow/game_screen.gd" id="1_6d8g2"]
+[ext_resource type="Script" path="res://Assets/GameFlow/day_action.gd" id="2_vbjbn"]
+
+[node name="GameScreen" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+script = ExtResource("1_6d8g2")
+
+[node name="DayStart" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="DayStart"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Day Start"
+
+[node name="Description" type="Label" parent="DayStart"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -11.5
+offset_right = 36.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Handles:
+Resource Use
+Night Effects
+Cards drawn"
+
+[node name="DayStarted" type="Button" parent="DayStart"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.5
+offset_top = -31.0
+offset_right = 90.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue to next state"
+
+[node name="DayPrep" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="DayPrep"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Day Prep"
+
+[node name="Description" type="Label" parent="DayPrep"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -11.5
+offset_right = 36.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Handles:
+Cards put into storage
+Stored cards are activated"
+
+[node name="DayPrepped" type="Button" parent="DayPrep"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.5
+offset_top = -31.0
+offset_right = 90.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue to next state"
+
+[node name="DayAction" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_vbjbn")
+
+[node name="ChallengeChoice" type="Control" parent="DayAction"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="DayAction/ChallengeChoice"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Challenge Choice"
+
+[node name="Description" type="Label" parent="DayAction/ChallengeChoice"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -11.5
+offset_right = 36.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Handles:
+Choosing the next challenge based on vague information
+Choices may be limited to a single option
+
+Also handles choice to rest instead
+"
+
+[node name="ChallengeChosen" type="Button" parent="DayAction/ChallengeChoice"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = 42.0
+offset_top = -31.0
+offset_right = 223.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue to Challenge"
+
+[node name="EndDayChosen" type="Button" parent="DayAction/ChallengeChoice"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -242.0
+offset_top = -31.0
+offset_right = -61.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "End current day"
+
+[node name="ChallengeAction" type="Control" parent="DayAction"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="DayAction/ChallengeAction"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Challenge Action"
+
+[node name="Description" type="Label" parent="DayAction/ChallengeAction"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -11.5
+offset_right = 36.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Handles:
+Placing cards to beat challenge
+"
+
+[node name="ChallengeActionEnded" type="Button" parent="DayAction/ChallengeAction"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.5
+offset_top = -31.0
+offset_right = 90.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue to next state"
+
+[node name="ChallengeResult" type="Control" parent="DayAction"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="DayAction/ChallengeResult"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Challenge Result"
+
+[node name="Description" type="Label" parent="DayAction/ChallengeResult"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -11.5
+offset_right = 36.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Handles:
+Challenge outcome
+Burn cards, slots or give resources
+"
+
+[node name="ChallengeFinished" type="Button" parent="DayAction/ChallengeResult"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.5
+offset_top = -31.0
+offset_right = 90.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue to next state"
+
+[node name="DayEnd" type="Control" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Title" type="Label" parent="DayEnd"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -20.0
+offset_right = 20.0
+offset_bottom = 23.0
+grow_horizontal = 2
+text = "Day End"
+
+[node name="Description" type="Label" parent="DayEnd"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -36.0
+offset_top = -11.5
+offset_right = 36.0
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Handles:
+Show "
+
+[node name="DayEnded" type="Button" parent="DayEnd"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -90.5
+offset_top = -31.0
+offset_right = 90.5
+grow_horizontal = 2
+grow_vertical = 0
+text = "Continue to next state"
+
+[connection signal="pressed" from="DayStart/DayStarted" to="." method="_on_day_started_pressed"]
+[connection signal="pressed" from="DayPrep/DayPrepped" to="." method="_on_day_prepped_pressed"]
+[connection signal="pressed" from="DayAction/ChallengeChoice/ChallengeChosen" to="DayAction" method="_on_challenge_chosen_pressed"]
+[connection signal="pressed" from="DayAction/ChallengeChoice/EndDayChosen" to="." method="_on_end_day_chosen_pressed"]
+[connection signal="pressed" from="DayAction/ChallengeAction/ChallengeActionEnded" to="DayAction" method="_on_challenge_action_ended_pressed"]
+[connection signal="pressed" from="DayAction/ChallengeResult/ChallengeFinished" to="DayAction" method="_on_challenge_finished_pressed"]
+[connection signal="pressed" from="DayEnd/DayEnded" to="." method="_on_day_ended_pressed"]
